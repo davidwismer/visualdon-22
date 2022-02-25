@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,29 +10,56 @@
     <script src="js/script.js" async></script>
 
     <title>1-SVG</title>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <h1>Dessiner des formes</h1>
     <h2>Rectangle</h2>
-
+    <svg width="400" height="100">
+        <rect width="400" height="100" style="fill: red"></rect>
+    </svg>
     <h2>Donut</h2>
-
+    <svg>
+        <circle cx="50" cy="50" r="60" style="fill:none; stroke:black" transform="translate(11, 11)" />
+        <circle cx='50' cy="50" r="30" style="fill: none; stroke:black" transform="translate(11, 11)" />
+    </svg>
 
     <h2>Ligne</h2>
-
+    <svg>
+        <line x1="20" y1="50" x2="31.766" y2="108.83" stroke-width="1" stroke="black">
+    </svg>
 
     <h2>Path</h2>
-
+    <svg width="500" height="100">
+        <path d="M5,5 c90,5 90,90 0,90z" style="fill:none; stroke:black" />
+        <path d="M78.8,95 l45,-90 l45,90 M100.5,50 h45" style="fill: none; stroke: black;" />
+        <path d="M178.5,5 l45,90 l45,-90" style="fill: none; stroke: black;" />
+        <path d="M278.5,5 h90 m-45,0 v90 m-45,0 h90" style="fill: none; stroke: black;" />
+        <path d="M378.5,5 c90,5 90,90 0,90z" style="fill:none; stroke:black" />
+    </svg>
 
     <h1>Animer des formes</h1>
 
     <h2>On click</h2>
-
+    <svg width="400" height="100">
+        <rect class="rect" width="400" height="100" style="fill: red"></rect>
+    </svg>
     <h2>On hover</h2>
+    <svg height="142" width="142" class="donut">
+        <circle class="ext" cx="50" cy="50" r="60" style="fill:none; stroke:black" transform="translate(21, 21)" />
+        <circle cx='50' cy="50" r="30" style="fill: none; stroke:black" transform="translate(21, 21)" />
+    </svg>
 
-    <h2>Prenez la première lettre de votre prénom que vous avez créée ci-dessus. Faite bouger une forme de votre choix le long de la lettre</h2>
+    <h2>Prenez la première lettre de votre prénom que vous avez créée ci-dessus. Faite bouger une forme de votre choix
+        le long de la lettre</h2>
+    <svg>
+        <path d="M5,5 c90,5 90,90 0,90z" style="fill:none; stroke:black" />
+        <circle cx="" cy="" r="5" style="fill:red">
+            <animateMotion dur="3s" repeatCount="indefinite" path="M5,5 c90,5 90,90 0,90z" />
+        </circle>
+    </svg>
 
+</body>
 
-  </body>
 </html>
