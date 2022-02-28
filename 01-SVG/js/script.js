@@ -12,6 +12,6 @@ rect.addEventListener("click", evt =>{
 donut.addEventListener("mouseenter", evt => {
     donut.querySelector(".ext").setAttribute("r", "70");
 })
-donut.addEventListener("mouseover", evt => {
+donut.addEventListener("mouseleave", evt => {
     donut.querySelector(".ext").setAttribute("r", "60");
 })
