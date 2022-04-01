@@ -78,7 +78,7 @@ Promise.all([
         svg.append("g")
             .call(d3.axisLeft(y));
         // Bars
-        let randomColor = Math.floor(Math.random()*16777215).toString(16)
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16)
         usersTab.forEach(user => {
             let nbpost = 0
             postsTab.forEach(post => {
@@ -90,7 +90,7 @@ Promise.all([
                 .attr("x", x(user.name))
                 .attr("y", y(nbpost))
                 .attr("width", x.bandwidth())
-                .attr("height", height-y(nbpost))
+                .attr("height", height - y(nbpost))
                 .attr("fill", `#${randomColor}`)
         })
 
