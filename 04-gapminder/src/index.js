@@ -4,9 +4,13 @@ import * as d3 from 'd3'
 import gdp from '../data/income_per_person_gdppercapita_ppp_inflation_adjusted.csv'
 import lifeExpectancy from '../data/life_expectancy_years.csv'
 import population from '../data/population_total.csv'
+/* import dataCoord from '../data/dataCoord.geojson' */
 
+d3.select('body').append('h1').text('Exercice 4')
 /////////////////////////////////////////////////////////////// EXERCICE 1
 //TITRE
+d3.select('body').append('h3').text('Graphique Statique')
+
 d3.select("body")
     .append("div")
     .attr('id', 'graph')
@@ -48,7 +52,6 @@ svg.append("g")
 // Générer une taille d'axe Y cohérente
 let theBiggestLifeExp = 0;
 let theSmallestLifeExp = 0;
-console.log(lifeExpectancy);
 lifeExpectancy.forEach(pays => {
     if (pays['2021'] >= theBiggestLifeExp) {
         theBiggestLifeExp = pays['2021'];
@@ -124,3 +127,59 @@ function strToInt(nb) {
     number = parseInt(number * multi);
     return number;
 };
+
+//////////////////////////////////////////////EXERCICE 2
+//Carte choroplète
+d3.select('body').append('h3').text('Carte Choroplète')
+
+let svgChoro = d3.select('body').append('svg').attr('width', '1000').attr('height', '600'),
+    widthChoro = +svgChoro.attr("width"),
+    heightChoro = +svgChoro.attr("height");
+
+let projectionChoro = d3.geoMercator()
+    .scale(70)
+    .center([0, 20])
+    .translate([widthChoro / 2, heightChoro / 2]);
+
+// Data and color scale
+let colorScaleChoro = d3.scaleThreshold()
+    .domain([50, 60, 70, 80, 90, 100])
+    .range(randomScheme()[7]);
+
+// Load external data and boot
+d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(function (d) {
+    // Draw the map
+    svgChoro.append("g")
+        .selectAll("path")
+        .data(d.features)
+        .join("path")
+        .attr("fill", function (d) {
+            let color = ''
+            lifeExpectancy.forEach(pays => {
+                if (d.properties.name == 'USA') console.log(d.properties.name)
+                if (pays['country'] == d.properties.name) {
+                    color = colorScaleChoro(pays['2021'])
+                }
+            })
+            return color
+        })
+        .attr("d", d3.geoPath()
+            .projection(projectionChoro)
+        )
+})
+
+function randomScheme() {
+    switch (Math.floor(Math.random() * 5)) {
+        case 0:
+            return d3.schemeOranges
+        case 1:
+            return d3.schemeBlues
+        case 2:
+            return d3.schemeYlOrRd
+        case 3:
+            return d3.schemeRdPu
+        case 4:
+            return d3.schemeReds
+    }
+}
+
