@@ -183,3 +183,4 @@ function randomScheme() {
     }
 }
 
+/////////////////////////////////////////EXERCICE 3
